@@ -1,5 +1,12 @@
 <?php
 defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
+
+$router->get('test', function() { echo 'It works!'; });
+$router->get('/', 'Welcome::index');
+$router->get('student', 'Student_controller::index');
+$router->get('student/profile', 'Student_controller::profile', ['middleware' => 'Student_middleware']);
+$router->get('student/profile', 'Student_controller::profile')
+       ->middleware('student');
 /**
  * ------------------------------------------------------------------
  * LavaLust - an opensource lightweight PHP MVC Framework
@@ -43,5 +50,3 @@ defined('PREVENT_DIRECT_ACCESS') OR exit('No direct script access allowed');
 |
 */
 /** @var object $router **/
-
-$router->get('/', 'Welcome::index');
